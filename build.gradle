@@ -1,5 +1,5 @@
 group 'ch.bildspur.postfx'
-version '1.0-SNAPSHOT'
+version '1.0'
 
 apply plugin: 'java'
 
@@ -17,4 +17,10 @@ dependencies {
     compile files('lib/processing/core/library/gluegen-rt.jar')
     compile files('lib/processing/core/library/jogl-all-natives-macosx-universal.jar')
     compile files('lib/processing/core/library/jogl-all.jar')
+}
+
+task fatJar(type: Jar) {
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
 }

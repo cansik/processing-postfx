@@ -4,14 +4,18 @@ package ch.bildspur.postfx;
  * Created by Florian Bruggisser on 21.03.17.
  */
 import processing.core.PApplet;
+import processing.core.PConstants;
 import processing.core.PGraphics;
 import processing.opengl.PShader;
 
+import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class PostFX
 {
+    public final static String VERSION = "1.0";
+
     private PApplet sketch;
 
     private final int PASS_NUMBER = 2;
@@ -44,7 +48,7 @@ public class PostFX
         this.width = width;
         this.height = height;
 
-        shaderPath = Paths.get(sketch.sketchPath(), "shader");
+        shaderPath = Paths.get(getLibPath(), "shader");
 
         resolution = new int[] {width, height};
 
@@ -183,5 +187,33 @@ public class PostFX
         increasePass();
 
         return this;
+    }
+
+    private String getLibPath() {
+        URL url = this.getClass().getResource("PostFX.class");
+        if (url != null) {
+            // Convert URL to string, taking care of spaces represented by the "%20"
+            // string.
+            String path = url.toString().replace("%20", " ");
+            int n0 = path.indexOf('/');
+
+            int n1 = -1;
+
+
+            n1 = path.indexOf("ProcessingPostFX.jar");
+            if (PApplet.platform == PConstants.WINDOWS) { //platform Windows
+                // In Windows, path string starts with "jar file/C:/..."
+                // so the substring up to the first / is removed.
+                n0++;
+            }
+
+
+            if ((-1 < n0) && (-1 < n1)) {
+                return path.substring(n0, n1);
+            } else {
+                return sketch.sketchPath();
+            }
+        }
+        return sketch.sketchPath();
     }
 }
