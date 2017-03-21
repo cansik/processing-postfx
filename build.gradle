@@ -1,0 +1,20 @@
+group 'ch.bildspur.postfx'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+
+    compile files('lib/processing/core/library/core.jar')
+    compile files('lib/processing/core/library/gluegen-rt-natives-macosx-universal.jar')
+    compile files('lib/processing/core/library/gluegen-rt.jar')
+    compile files('lib/processing/core/library/jogl-all-natives-macosx-universal.jar')
+    compile files('lib/processing/core/library/jogl-all.jar')
+}
