@@ -1,5 +1,7 @@
 package ch.bildspur.postfx;
 
+import ch.bildspur.postfx.pass.BlurPass;
+import ch.bildspur.postfx.pass.BrightPass;
 import processing.core.PApplet;
 import processing.core.PGraphics;
 import processing.opengl.PJOGL;
@@ -18,6 +20,10 @@ public class Sketch extends PApplet {
     PGraphics canvas;
     PGraphics passResult;
 
+    PostFXSupervisor supervisor;
+    BrightPass brightPass;
+    BlurPass blurPass;
+
     public void settings() {
         size(OUTPUT_WIDTH, OUTPUT_HEIGHT, P3D);
         PJOGL.profile = 1;
@@ -27,6 +33,10 @@ public class Sketch extends PApplet {
         frameRate(FRAME_RATE);
 
         fx = new PostFX(this);
+        supervisor = new PostFXSupervisor(this);
+        brightPass = new BrightPass(this, 0.3f);
+        blurPass = new BlurPass(this, 40, 12f, false);
+
         canvas = createGraphics(width, height, P3D);
 
         // initialise pass results
@@ -60,6 +70,7 @@ public class Sketch extends PApplet {
         canvas.popMatrix();
         canvas.endDraw();
 
+        /*
         // filter current scene with bloom effect
         fx.filter(canvas)
                 .brightPass(0.3f)
@@ -68,6 +79,17 @@ public class Sketch extends PApplet {
                 .close(passResult);
 
         // draw all combined
+        blendMode(BLEND);
+        image(canvas, 0, 0);
+        blendMode(SCREEN);
+        image(passResult, 0, 0);
+        */
+
+        supervisor.render(canvas);
+        supervisor.pass(brightPass);
+        supervisor.pass(blurPass);
+        supervisor.compose(passResult);
+
         blendMode(BLEND);
         image(canvas, 0, 0);
         blendMode(SCREEN);
