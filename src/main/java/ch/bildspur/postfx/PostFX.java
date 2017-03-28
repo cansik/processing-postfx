@@ -136,14 +136,14 @@ public class PostFX
         return this;
     }
 
-    public PostFX blur(int blurSize, float sigma, boolean horizonatal)
+    public PostFX blur(int blurSize, float sigma, boolean horizontal)
     {
         PGraphics pass = getNextPass();
         clearPass(pass);
 
         blurShader.set("blurSize", blurSize);
         blurShader.set("sigma", sigma);
-        blurShader.set("horizontalPass", horizonatal ? 1 : 0);
+        blurShader.set("horizontalPass", horizontal ? 1 : 0);
 
         pass.beginDraw();
         pass.shader(blurShader);
