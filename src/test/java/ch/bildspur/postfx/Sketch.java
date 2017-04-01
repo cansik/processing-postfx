@@ -48,8 +48,7 @@ public class Sketch extends PApplet {
         passResult = createGraphics(width, height, P2D);
     }
 
-    public void draw()
-    {
+    public void draw() {
         // clear screen
         background(0);
 
@@ -59,7 +58,7 @@ public class Sketch extends PApplet {
         // render simple cube
         canvas.pushMatrix();
 
-        canvas.translate(width/2, height/2);
+        canvas.translate(width / 2, height / 2);
         canvas.rotateX(radians(frameCount % 360));
         canvas.rotateZ(radians(frameCount % 360));
 
@@ -83,7 +82,9 @@ public class Sketch extends PApplet {
         */
 
         fx.render(canvas)
+                .toon()
                 .blur(10, 40)
+                .sobel()
                 .compose(passResult);
 
         blendMode(BLEND);
@@ -91,7 +92,7 @@ public class Sketch extends PApplet {
         text("Canvas", 10, height / 2 + 20);
         blendMode(SCREEN);
         image(passResult, width / 2, 0, width / 2, height / 2);
-        text("Result", width / 2 + 10,  height / 2 + 20);
+        text("Result", width / 2 + 10, height / 2 + 20);
 
 
         fill(0, 255, 0);

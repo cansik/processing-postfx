@@ -1,9 +1,7 @@
 package ch.bildspur.postfx.builder;
 
 import ch.bildspur.postfx.PostFXSupervisor;
-import ch.bildspur.postfx.pass.BasePass;
-import ch.bildspur.postfx.pass.BlurPass;
-import ch.bildspur.postfx.pass.Pass;
+import ch.bildspur.postfx.pass.*;
 import processing.core.PApplet;
 import processing.core.PGraphics;
 
@@ -19,7 +17,7 @@ public class PostFXBuilder {
     private PostFXSupervisor supervisor;
     private PostFX fx;
 
-    private Map<Class<Pass>, Pass> passes;
+    private Map<String, Pass> passes;
 
     protected PostFXBuilder(PostFX fx, PostFXSupervisor supervisor) {
         this.fx = fx;
@@ -29,8 +27,8 @@ public class PostFXBuilder {
     }
 
     private <T extends BasePass> T getPass(Class<T> type) {
-        if (passes.containsKey(type))
-            return (T) passes.get(type);
+        if (passes.containsKey(type.getName()))
+            return (T) passes.get(type.getName());
 
         // initialize class lazy and use constructor zero
         T pass = null;
@@ -45,6 +43,9 @@ public class PostFXBuilder {
             e.printStackTrace();
         }
 
+        // add pass
+        passes.put(type.getName(), pass);
+
         return pass;
     }
 
@@ -53,11 +54,39 @@ public class PostFXBuilder {
     }
 
     public PostFXBuilder blur(int blurSize, float sigma) {
+        blur(blurSize, sigma, false);
+        blur(blurSize, sigma, true);
+        return this;
+    }
+
+    public PostFXBuilder blur(int blurSize, float sigma, boolean horizontal) {
         BlurPass pass = getPass(BlurPass.class);
 
         pass.setBlurSize(blurSize);
         pass.setSigma(sigma);
+        pass.setHorizontal(horizontal);
 
+        supervisor.pass(pass);
+        return this;
+    }
+
+    public PostFXBuilder brightPass(int threshold) {
+        BrightPass pass = getPass(BrightPass.class);
+
+        pass.setThreshold(threshold);
+
+        supervisor.pass(pass);
+        return this;
+    }
+
+    public PostFXBuilder sobel() {
+        SobelPass pass = getPass(SobelPass.class);
+        supervisor.pass(pass);
+        return this;
+    }
+
+    public PostFXBuilder toon() {
+        ToonPass pass = getPass(ToonPass.class);
         supervisor.pass(pass);
         return this;
     }

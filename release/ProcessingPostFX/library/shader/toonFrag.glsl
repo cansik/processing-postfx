@@ -131,7 +131,7 @@ float nearestLevel(float col, int mode) {
 		}
 	}
  
- 
+    return 0;
 }
  
 // averaged pixel intensity from 3 color channels
