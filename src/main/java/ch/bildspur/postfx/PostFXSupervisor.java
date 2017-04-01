@@ -76,6 +76,7 @@ public class PostFXSupervisor implements Supervisor {
 
     @Override
     public void pass(Pass pass) {
+        pass.prepare();
         pass.apply(this);
         increasePass();
     }

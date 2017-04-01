@@ -70,8 +70,9 @@ public class Sketch extends PApplet {
         canvas.popMatrix();
         canvas.endDraw();
 
-        /*
+
         // filter current scene with bloom effect
+        /*
         fx.filter(canvas)
                 .brightPass(0.3f)
                 .blur(40, 12, false)
@@ -85,15 +86,18 @@ public class Sketch extends PApplet {
         image(passResult, 0, 0);
         */
 
+
         supervisor.render(canvas);
         supervisor.pass(brightPass);
         supervisor.pass(blurPass);
         supervisor.compose(passResult);
 
         blendMode(BLEND);
-        image(canvas, 0, 0);
+        image(canvas, 0, 0, width / 2, height / 2);
+        text("Canvas", 10, height / 2 + 20);
         blendMode(SCREEN);
-        image(passResult, 0, 0);
+        image(passResult, width / 2, 0, width / 2, height / 2);
+        text("Result", width / 2 + 10,  height / 2 + 20);
 
         fill(0, 255, 0);
         text("FPS: " + frameRate, 20, 20);
