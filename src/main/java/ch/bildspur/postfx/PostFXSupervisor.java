@@ -76,9 +76,16 @@ public class PostFXSupervisor implements Supervisor {
 
     @Override
     public void pass(Pass pass) {
-        pass.prepare();
+        pass.prepare(this);
         pass.apply(this);
         increasePass();
+    }
+
+    public void compose() {
+        //clearPass(sketch.g);
+        sketch.g.beginDraw();
+        sketch.g.image(getCurrentPass(), 0, 0);
+        sketch.g.endDraw();
     }
 
     @Override

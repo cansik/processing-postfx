@@ -2,6 +2,7 @@ package ch.bildspur.postfx;
 
 import ch.bildspur.postfx.pass.BlurPass;
 import ch.bildspur.postfx.pass.BrightPass;
+import ch.bildspur.postfx.pass.SobelPass;
 import processing.core.PApplet;
 import processing.core.PGraphics;
 import processing.opengl.PJOGL;
@@ -15,14 +16,13 @@ public class Sketch extends PApplet {
 
     public final static int FRAME_RATE = 60;
 
-    PostFX fx;
-
     PGraphics canvas;
     PGraphics passResult;
 
     PostFXSupervisor supervisor;
     BrightPass brightPass;
     BlurPass blurPass;
+    SobelPass sobelPass;
 
     public void settings() {
         size(OUTPUT_WIDTH, OUTPUT_HEIGHT, P3D);
@@ -32,10 +32,10 @@ public class Sketch extends PApplet {
     public void setup() {
         frameRate(FRAME_RATE);
 
-        fx = new PostFX(this);
         supervisor = new PostFXSupervisor(this);
         brightPass = new BrightPass(this, 0.3f);
         blurPass = new BlurPass(this, 40, 12f, false);
+        sobelPass = new SobelPass(this);
 
         canvas = createGraphics(width, height, P3D);
 
@@ -70,27 +70,11 @@ public class Sketch extends PApplet {
         canvas.popMatrix();
         canvas.endDraw();
 
-
-        // filter current scene with bloom effect
-        /*
-        fx.filter(canvas)
-                .brightPass(0.3f)
-                .blur(40, 12, false)
-                .blur(40, 12, true)
-                .close(passResult);
-
-        // draw all combined
-        blendMode(BLEND);
-        image(canvas, 0, 0);
-        blendMode(SCREEN);
-        image(passResult, 0, 0);
-        */
-
-
+        // add effects
         supervisor.render(canvas);
-        supervisor.pass(brightPass);
-        supervisor.pass(blurPass);
-        supervisor.compose(passResult);
+        supervisor.pass(sobelPass);
+        supervisor.compose();
+
 
         blendMode(BLEND);
         image(canvas, 0, 0, width / 2, height / 2);
@@ -98,6 +82,7 @@ public class Sketch extends PApplet {
         blendMode(SCREEN);
         image(passResult, width / 2, 0, width / 2, height / 2);
         text("Result", width / 2 + 10,  height / 2 + 20);
+
 
         fill(0, 255, 0);
         text("FPS: " + frameRate, 20, 20);

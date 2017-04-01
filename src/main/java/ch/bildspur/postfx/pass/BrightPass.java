@@ -1,5 +1,6 @@
 package ch.bildspur.postfx.pass;
 
+import ch.bildspur.postfx.Supervisor;
 import processing.core.PApplet;
 
 /**
@@ -17,7 +18,7 @@ public class BrightPass extends BasePass {
     }
 
     @Override
-    public void prepare() {
+    public void prepare(Supervisor supervisor) {
         shader.set("brightPassThreshold", threshold);
     }
 

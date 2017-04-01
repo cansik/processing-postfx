@@ -10,8 +10,8 @@ import java.nio.file.Paths;
 /**
  * Created by cansik on 27.03.17.
  */
-class BasePass implements Pass {
-    protected PShader shader;
+public class BasePass implements Pass {
+    PShader shader;
 
     public BasePass(PApplet sketch, String passName)
     {
@@ -19,7 +19,7 @@ class BasePass implements Pass {
     }
 
     @Override
-    public void prepare() {}
+    public void prepare(Supervisor supervisor) {}
 
     @Override
     public void apply(Supervisor supervisor) {
@@ -30,5 +30,9 @@ class BasePass implements Pass {
         pass.shader(shader);
         pass.image(supervisor.getCurrentPass(), 0, 0);
         pass.endDraw();
+    }
+
+    public PShader getShader() {
+        return shader;
     }
 }
