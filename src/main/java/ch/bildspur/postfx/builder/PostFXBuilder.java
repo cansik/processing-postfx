@@ -49,6 +49,10 @@ public class PostFXBuilder {
         return pass;
     }
 
+    public void compose() {
+        supervisor.compose();
+    }
+
     public void compose(PGraphics graphics) {
         supervisor.compose(graphics);
     }
@@ -70,7 +74,7 @@ public class PostFXBuilder {
         return this;
     }
 
-    public PostFXBuilder brightPass(int threshold) {
+    public PostFXBuilder brightPass(float threshold) {
         BrightPass pass = getPass(BrightPass.class);
 
         pass.setThreshold(threshold);

@@ -11,9 +11,8 @@ public class BrightPass extends BasePass {
 
     private float threshold;
 
-    public BrightPass(PApplet sketch)
-    {
-        this(sketch, 100);
+    public BrightPass(PApplet sketch) {
+        this(sketch, 0.5f);
     }
 
     public BrightPass(PApplet sketch, float threshold) {
