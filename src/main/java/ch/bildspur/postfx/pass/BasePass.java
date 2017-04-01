@@ -5,6 +5,7 @@ import processing.core.PApplet;
 import processing.core.PGraphics;
 import processing.opengl.PShader;
 
+import java.net.URL;
 import java.nio.file.Paths;
 
 /**
@@ -15,7 +16,8 @@ public class BasePass implements Pass {
 
     public BasePass(PApplet sketch, String passName)
     {
-        shader = sketch.loadShader(Paths.get("shader", passName + ".glsl").toString());
+        URL shaderPath = BasePass.class.getClassLoader().getResource("shader/" + passName + ".glsl");
+        shader = sketch.loadShader(shaderPath.getPath());
     }
 
     @Override

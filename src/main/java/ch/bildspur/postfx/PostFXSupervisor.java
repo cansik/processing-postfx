@@ -82,6 +82,8 @@ public class PostFXSupervisor implements Supervisor {
     }
 
     public void compose() {
+        //todo: not working at the moment
+
         //clearPass(sketch.g);
         sketch.g.beginDraw();
         sketch.g.image(getCurrentPass(), 0, 0);
