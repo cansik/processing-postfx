@@ -3,3 +3,5 @@
 build
 out
 release
+examples/ReadMeRendering/render
+*.mov
