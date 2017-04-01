@@ -1,13 +1,13 @@
 # Processing PostFX
 A simple post effects library for processing.
 
-![PFX Example](readme/render-cube-fast.gif)
-
-*Example of the post effects sobel, bloom and toon.*
-
 ## Introduction
 
 **PostFX** is a simple post effects library for processing. Post effects are applied to the whole scene after it was rendered, to enhance the scene with some special effects. For example the [bloom effect](https://en.wikipedia.org/wiki/Bloom_(shader_effect)) helps to simulate the light diffusion to be more **realistic**.
+
+![PFX Example](readme/render-cube-fast.gif)
+
+*Example of the post effects sobel, bloom and toon.*
 
 ### Why did I implement it?
 
