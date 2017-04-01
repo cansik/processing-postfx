@@ -1,5 +1,6 @@
 package ch.bildspur.postfx;
 
+import ch.bildspur.postfx.builder.PostFX;
 import ch.bildspur.postfx.pass.BlurPass;
 import ch.bildspur.postfx.pass.BrightPass;
 import ch.bildspur.postfx.pass.SobelPass;
@@ -24,6 +25,8 @@ public class Sketch extends PApplet {
     BlurPass blurPass;
     SobelPass sobelPass;
 
+    PostFX fx;
+
     public void settings() {
         size(OUTPUT_WIDTH, OUTPUT_HEIGHT, P3D);
         PJOGL.profile = 1;
@@ -36,6 +39,8 @@ public class Sketch extends PApplet {
         brightPass = new BrightPass(this, 0.3f);
         blurPass = new BlurPass(this, 40, 12f, false);
         sobelPass = new SobelPass(this);
+
+        fx = new PostFX(this);
 
         canvas = createGraphics(width, height, P3D);
 
@@ -71,10 +76,15 @@ public class Sketch extends PApplet {
         canvas.endDraw();
 
         // add effects
+        /*
         supervisor.render(canvas);
         supervisor.pass(sobelPass);
-        supervisor.compose();
+        supervisor.compose(passResult);
+        */
 
+        fx.render(canvas)
+                .blur(10, 40)
+                .compose(passResult);
 
         blendMode(BLEND);
         image(canvas, 0, 0, width / 2, height / 2);

@@ -6,12 +6,11 @@ import processing.core.PGraphics;
 import processing.opengl.PShader;
 
 import java.net.URL;
-import java.nio.file.Paths;
 
 /**
  * Created by cansik on 27.03.17.
  */
-public class BasePass implements Pass {
+public abstract class BasePass implements Pass {
     PShader shader;
 
     public BasePass(PApplet sketch, String passName)

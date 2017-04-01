@@ -13,6 +13,11 @@ public class BlurPass extends BasePass {
     private float sigma;
     private boolean horizontal;
 
+    public BlurPass(PApplet sketch)
+    {
+        this(sketch, 10, 10, false);
+    }
+
     public BlurPass(PApplet sketch, int blurSize, float sigma, boolean horizontal) {
         super(sketch, PASS_NAME);
 
