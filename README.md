@@ -1,4 +1,4 @@
-# Processing PostFX
+# PostFX for Processing
 A simple post effects library for processing.
 
 ## Introduction
