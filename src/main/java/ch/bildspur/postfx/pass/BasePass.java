@@ -46,8 +46,13 @@ public abstract class BasePass implements Pass {
 
             int n1 = -1;
 
+            // read jar file name
+            String jar = Paths.get(BasePass.class.getProtectionDomain()
+                    .getCodeSource()
+                    .getLocation()
+                    .getPath()).getFileName().toString();
 
-            n1 = path.indexOf("ProcessingPostFX.jar");
+            n1 = path.indexOf(jar);
             if (PApplet.platform == PConstants.WINDOWS) { //platform Windows
                 // In Windows, path string starts with "jar file/C:/..."
                 // so the substring up to the first / is removed.
