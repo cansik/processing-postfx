@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by cansik on 01.04.17.
+ * PostFX builder pattern.
  */
 public class PostFXBuilder {
     private PostFXSupervisor supervisor;
@@ -49,20 +49,43 @@ public class PostFXBuilder {
         return pass;
     }
 
+    /**
+     * Compose and finalize rendering onto sketch texture.
+     */
     public void compose() {
         supervisor.compose();
     }
 
+    /**
+     * Compose and finalize rendering.
+     *
+     * @param graphics Texture to render onto.
+     */
     public void compose(PGraphics graphics) {
         supervisor.compose(graphics);
     }
 
+    /**
+     * Run a blur pass on the texture.
+     *
+     * @param blurSize Size of the blur.
+     * @param sigma    Sigma of the blur.
+     * @return Builder object.
+     */
     public PostFXBuilder blur(int blurSize, float sigma) {
         blur(blurSize, sigma, false);
         blur(blurSize, sigma, true);
         return this;
     }
 
+    /**
+     * Run a blur pass on the texture.
+     *
+     * @param blurSize   Size of the blur.
+     * @param sigma      Sigma of the blur.
+     * @param horizontal Indicates if the pass runs horizontal or vertical.
+     * @return Builder object.
+     */
     public PostFXBuilder blur(int blurSize, float sigma, boolean horizontal) {
         BlurPass pass = getPass(BlurPass.class);
 
@@ -74,6 +97,12 @@ public class PostFXBuilder {
         return this;
     }
 
+    /**
+     * Run a bright pass pass on the texture.
+     *
+     * @param threshold Threshold of the brightness.
+     * @return Builder object.
+     */
     public PostFXBuilder brightPass(float threshold) {
         BrightPass pass = getPass(BrightPass.class);
 
@@ -83,12 +112,22 @@ public class PostFXBuilder {
         return this;
     }
 
+    /**
+     * Run a sobel edge detection pass on the texture.
+     *
+     * @return Builder object.
+     */
     public PostFXBuilder sobel() {
         SobelPass pass = getPass(SobelPass.class);
         supervisor.pass(pass);
         return this;
     }
 
+    /**
+     * Run a toon pass on the texture.
+     *
+     * @return Builder object.
+     */
     public PostFXBuilder toon() {
         ToonPass pass = getPass(ToonPass.class);
         supervisor.pass(pass);
