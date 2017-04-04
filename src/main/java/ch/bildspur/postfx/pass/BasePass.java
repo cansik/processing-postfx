@@ -42,6 +42,10 @@ public abstract class BasePass implements Pass {
             // Convert URL to string, taking care of spaces represented by the "%20"
             // string.
             String path = url.toString().replace("%20", " ");
+
+            if (!path.contains(".jar"))
+                return sketch.sketchPath();
+
             int n0 = path.indexOf('/');
 
             int n1 = -1;

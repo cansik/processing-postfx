@@ -9,6 +9,16 @@ repositories {
     mavenCentral()
 }
 
+configurations {
+    jar.archiveName = 'PostFX.jar'
+}
+
+
+javadoc {
+    source = sourceSets.main.allJava
+    classpath = configurations.compile
+}
+
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
 
