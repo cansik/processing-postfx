@@ -41,7 +41,7 @@ cp -r "src" "$OUTPUT/"
 # create release files
 cd "release/"
 rm -f "PostFX.zip"
-zip -r "PostFX.zip" "PostFX"
+zip -r "PostFX.zip" "PostFX" -x "*.DS_Store"
 
 # store it with version number
 cd ..

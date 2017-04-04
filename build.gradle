@@ -13,7 +13,6 @@ configurations {
     jar.archiveName = 'PostFX.jar'
 }
 
-
 javadoc {
     source = sourceSets.main.allJava
     classpath = configurations.compile
