@@ -82,10 +82,7 @@ public class Sketch extends PApplet {
         */
 
         fx.render(canvas)
-                .toon()
-                .blur(10, 40)
-                .sobel()
-                .invert()
+                .brightnessContrast(0.0f, 1.0f)
                 .compose(passResult);
 
         blendMode(BLEND);

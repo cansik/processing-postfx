@@ -144,4 +144,21 @@ public class PostFXBuilder {
         supervisor.pass(pass);
         return this;
     }
+
+    /**
+     * Run an brightness and contrast correction pass on the texture.
+     *
+     * @param brightness Amount of brightness to add to the picture (default 0.0).
+     * @param contrast   Contrast of the image (default 1.0).
+     * @return Builder object.
+     */
+    public PostFXBuilder brightnessContrast(float brightness, float contrast) {
+        BrightnessContrastPass pass = getPass(BrightnessContrastPass.class);
+
+        pass.setBrightness(brightness);
+        pass.setContrast(contrast);
+
+        supervisor.pass(pass);
+        return this;
+    }
 }
