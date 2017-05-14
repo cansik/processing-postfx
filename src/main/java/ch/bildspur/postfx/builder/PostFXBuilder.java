@@ -176,4 +176,15 @@ public class PostFXBuilder {
         supervisor.pass(pass);
         return this;
     }
+
+    /**
+     * Run a chromatic aberration effect pass on the texture.
+     *
+     * @return Builder object.
+     */
+    public PostFXBuilder chromaticAberration() {
+        ChromaticAberrationPass pass = getPass(ChromaticAberrationPass.class);
+        supervisor.pass(pass);
+        return this;
+    }
 }

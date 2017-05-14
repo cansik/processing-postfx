@@ -53,7 +53,8 @@ public class Sketch extends PApplet {
         background(0);
 
         canvas.beginDraw();
-        canvas.background(55);
+        //canvas.background(55);
+        drawChessBoard(canvas, 8);
 
         // render simple cube
         canvas.pushMatrix();
@@ -82,14 +83,16 @@ public class Sketch extends PApplet {
         */
 
         fx.render(canvas)
-                .brightnessContrast(0.1f, 1.0f)
-                .pixelate(128)
+                //.brightnessContrast(0.1f, 1.0f)
+                //.pixelate(128)
+                .chromaticAberration()
                 .compose(passResult);
 
         blendMode(BLEND);
         image(canvas, 0, 0, width / 2, height / 2);
         text("Canvas", 10, height / 2 + 20);
-        blendMode(SCREEN);
+
+        blendMode(BLEND);
         image(passResult, width / 2, 0, width / 2, height / 2);
         text("Result", width / 2 + 10, height / 2 + 20);
 
@@ -98,4 +101,20 @@ public class Sketch extends PApplet {
         text("FPS: " + frameRate, 20, 20);
     }
 
+    void drawChessBoard(PGraphics pg, int amount) {
+
+        float blockX = pg.width / (float) amount;
+        float blockY = pg.height / (float) amount;
+
+        for (int i = 0; i < amount; i++) {
+            for (int j = 0; j < amount; j++) {
+                if ((i + j + 1) % 2 == 0) {
+                    pg.fill(255, 255, 255); // white
+                } else {
+                    pg.fill(0, 0, 0); // black
+                }
+                pg.rect(i * blockX, j * blockY, (i + 1) * blockX, (j + 1) * blockY);
+            }
+        }
+    }
 }
