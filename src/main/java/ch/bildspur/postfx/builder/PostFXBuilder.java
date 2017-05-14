@@ -146,7 +146,7 @@ public class PostFXBuilder {
     }
 
     /**
-     * Run an brightness and contrast correction pass on the texture.
+     * Run a brightness and contrast correction pass on the texture.
      *
      * @param brightness Amount of brightness to add to the picture (default 0.0).
      * @param contrast   Contrast of the image (default 1.0).
@@ -157,6 +157,21 @@ public class PostFXBuilder {
 
         pass.setBrightness(brightness);
         pass.setContrast(contrast);
+
+        supervisor.pass(pass);
+        return this;
+    }
+
+    /**
+     * Run a pixel effect pass on the texture.
+     *
+     * @param level Amount of the pixel effect.
+     * @return Builder object.
+     */
+    public PostFXBuilder pixelate(int level) {
+        PixelatePass pass = getPass(PixelatePass.class);
+
+        pass.setLevel(level);
 
         supervisor.pass(pass);
         return this;
