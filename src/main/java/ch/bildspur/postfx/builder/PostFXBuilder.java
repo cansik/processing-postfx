@@ -165,13 +165,13 @@ public class PostFXBuilder {
     /**
      * Run a pixel effect pass on the texture.
      *
-     * @param level Amount of the pixel effect.
+     * @param amount Amount of the pixel effect.
      * @return Builder object.
      */
-    public PostFXBuilder pixelate(int level) {
+    public PostFXBuilder pixelate(float amount) {
         PixelatePass pass = getPass(PixelatePass.class);
 
-        pass.setLevel(level);
+        pass.setAmount(amount);
 
         supervisor.pass(pass);
         return this;

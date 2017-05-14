@@ -9,29 +9,29 @@ import processing.core.PApplet;
 public class PixelatePass extends BasePass {
     private static final String PASS_NAME = "pixelateFrag";
 
-    private float level;
+    private float amount;
 
     public PixelatePass(PApplet sketch) {
         this(sketch, 10);
     }
 
-    public PixelatePass(PApplet sketch, int level) {
+    public PixelatePass(PApplet sketch, float amount) {
         super(sketch, PASS_NAME);
 
-        this.level = level;
+        this.amount = amount;
     }
 
     @Override
     public void prepare(Supervisor supervisor) {
         shader.set("resolution", supervisor.getResolution());
-        shader.set("level", level);
+        shader.set("amount", amount);
     }
 
-    public float getLevel() {
-        return level;
+    public float getAmount() {
+        return amount;
     }
 
-    public void setLevel(float level) {
-        this.level = level;
+    public void setAmount(float amount) {
+        this.amount = amount;
     }
 }
