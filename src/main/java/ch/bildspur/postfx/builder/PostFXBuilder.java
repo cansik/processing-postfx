@@ -133,4 +133,15 @@ public class PostFXBuilder {
         supervisor.pass(pass);
         return this;
     }
+
+    /**
+     * Run an invert pass on the texture.
+     *
+     * @return Builder object.
+     */
+    public PostFXBuilder invert() {
+        InvertPass pass = getPass(InvertPass.class);
+        supervisor.pass(pass);
+        return this;
+    }
 }

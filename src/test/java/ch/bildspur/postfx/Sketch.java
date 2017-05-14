@@ -85,6 +85,7 @@ public class Sketch extends PApplet {
                 .toon()
                 .blur(10, 40)
                 .sobel()
+                .invert()
                 .compose(passResult);
 
         blendMode(BLEND);
