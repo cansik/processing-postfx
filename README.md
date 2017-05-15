@@ -17,6 +17,8 @@ So I started to implement a simple but fast library to run post effects on `P2D`
 
 ### What is included?
 
+![Lenna Effect](readme/EffectOverviewShort.gif)
+
 The **PostFX** library currently contains following built in effects:
 
 * bright pass

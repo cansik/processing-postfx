@@ -45,6 +45,4 @@ void draw()
     .brightPass(0.5)
     .blur(20, 50)
     .compose();
-    
-  text("hello world", 200, 200);
 }
