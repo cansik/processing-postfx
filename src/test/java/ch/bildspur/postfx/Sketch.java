@@ -85,7 +85,7 @@ public class Sketch extends PApplet {
         fx.render(canvas)
                 //.brightnessContrast(0.1f, 1.0f)
                 //.pixelate(128)
-                .chromaticAberration()
+                .grayScale()
                 .compose(passResult);
 
         blendMode(BLEND);

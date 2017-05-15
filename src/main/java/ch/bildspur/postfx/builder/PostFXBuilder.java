@@ -187,4 +187,15 @@ public class PostFXBuilder {
         supervisor.pass(pass);
         return this;
     }
+
+    /**
+     * Run a grayscale pass on the texture.
+     *
+     * @return Builder object.
+     */
+    public PostFXBuilder grayScale() {
+        GrayScalePass pass = getPass(GrayScalePass.class);
+        supervisor.pass(pass);
+        return this;
+    }
 }
