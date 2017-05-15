@@ -33,7 +33,7 @@ void draw()
 
   // add bloom filter
   fx.render()
-    .bloom(0.5, 20, 50)
-    //.sobel()
+    .sobel()
+    .bloom(0.5, 20, 30)
     .compose();
 }

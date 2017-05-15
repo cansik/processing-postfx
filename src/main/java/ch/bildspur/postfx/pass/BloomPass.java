@@ -90,7 +90,7 @@ public class BloomPass implements Pass {
         np.beginDraw();
         np.blendMode(PConstants.SCREEN);
         np.image(cp, 0, 0);
-
+        np.blendMode(PConstants.BLEND);
         np.endDraw();
     }
 
