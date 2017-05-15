@@ -54,4 +54,32 @@ public class PostFX {
         supervisor.render();
         return builder;
     }
+
+    /**
+     * Re-initialise the framebuffer with a different size.
+     *
+     * @param sketch Sketch with new size.
+     */
+    public void setResolution(PApplet sketch) {
+        setResolution(sketch.g);
+    }
+
+    /**
+     * Re-initialise the framebuffer with a different size.
+     *
+     * @param texture Texture object with new size.
+     */
+    public void setResolution(PGraphics texture) {
+        setResolution(texture.width, texture.height);
+    }
+
+    /**
+     * Re-initialise the framebuffer with a different size.
+     *
+     * @param width  Width of the new framebuffer.
+     * @param height Height of the new framebuffer.
+     */
+    public void setResolution(int width, int height) {
+        supervisor.setResolution(width, height);
+    }
 }

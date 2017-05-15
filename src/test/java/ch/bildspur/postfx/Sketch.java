@@ -98,7 +98,6 @@ public class Sketch extends PApplet {
                 .vignette(1, 0)
                 //.noise(1, 50)
                 //.saturationVibrance(map(mouseX, 0, width, -1, 1), map(mouseY, 0, height, -1, 1))
-                .custom(sobelPass)
                 .compose(passResult);
 
         blendMode(BLEND);
