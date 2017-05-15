@@ -66,6 +66,17 @@ public class PostFXBuilder {
     }
 
     /**
+     * Run a custom pass on the texture.
+     *
+     * @param pass Custom pass to be run.
+     * @return Builder object.
+     */
+    public PostFXBuilder custom(Pass pass) {
+        supervisor.pass(pass);
+        return this;
+    }
+
+    /**
      * Run a blur pass on the texture.
      *
      * @param blurSize Size of the blur.
