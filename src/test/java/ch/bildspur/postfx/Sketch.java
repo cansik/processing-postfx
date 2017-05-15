@@ -93,10 +93,11 @@ public class Sketch extends PApplet {
         fx.render(canvas)
                 //.brightnessContrast(0.1f, 1.0f)
                 //.bloom(0.8f, 30, 50)
-                .pixelate(20)
-                .rgbSplit(map(mouseX, 0, width, 0, 100))
+                //.pixelate(20)
+                //.rgbSplit(map(mouseX, 0, width, 0, 100))
                 .vignette(1, 0)
-                .noise(1, 50)
+                //.noise(1, 50)
+                .denoise(map(mouseY, 0, height, 0, 1))
                 .compose(passResult);
 
         blendMode(BLEND);
@@ -106,7 +107,6 @@ public class Sketch extends PApplet {
         blendMode(BLEND);
         image(passResult, width / 2, 0, width / 2, height / 2);
         text("Result", width / 2 + 10, height / 2 + 20);
-
 
         fill(0, 255, 0);
         text("FPS: " + frameRate, 20, 20);

@@ -266,4 +266,19 @@ public class PostFXBuilder {
         supervisor.pass(pass);
         return this;
     }
+
+    /**
+     * Run a denoise pass on the texture.
+     *
+     * @param exponent Exponent of the denoise effect.
+     * @return Builder object.
+     */
+    public PostFXBuilder denoise(float exponent) {
+        DenoisePass pass = getPass(DenoisePass.class);
+
+        pass.setExponent(exponent);
+
+        supervisor.pass(pass);
+        return this;
+    }
 }
