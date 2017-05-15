@@ -1,6 +1,7 @@
 package ch.bildspur.postfx.builder;
 
 import ch.bildspur.postfx.PostFXSupervisor;
+import ch.bildspur.postfx.pass.Pass;
 import processing.core.PApplet;
 import processing.core.PGraphics;
 
@@ -81,5 +82,16 @@ public class PostFX {
      */
     public void setResolution(int width, int height) {
         supervisor.setResolution(width, height);
+    }
+
+    /**
+     * Preload a specific path to avoid delay because of shader compiling.
+     *
+     * @param type Type of the pass to preload.
+     * @param <T>  Type of the pass to preload.
+     * @return
+     */
+    public <T extends Pass> T preload(Class<T> type) {
+        return builder.getPass(type);
     }
 }

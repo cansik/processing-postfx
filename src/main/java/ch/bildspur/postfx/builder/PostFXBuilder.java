@@ -26,7 +26,7 @@ public class PostFXBuilder {
         passes = new HashMap<>();
     }
 
-    private <T extends Pass> T getPass(Class<T> type) {
+    protected <T extends Pass> T getPass(Class<T> type) {
         if (passes.containsKey(type.getName()))
             return (T) passes.get(type.getName());
 

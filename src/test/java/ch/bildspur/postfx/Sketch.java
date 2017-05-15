@@ -4,6 +4,7 @@ import ch.bildspur.postfx.builder.PostFX;
 import ch.bildspur.postfx.pass.BlurPass;
 import ch.bildspur.postfx.pass.BrightPass;
 import ch.bildspur.postfx.pass.SobelPass;
+import ch.bildspur.postfx.pass.VignettePass;
 import processing.core.PApplet;
 import processing.core.PGraphics;
 import processing.core.PImage;
@@ -44,6 +45,7 @@ public class Sketch extends PApplet {
         sobelPass = new SobelPass(this);
 
         fx = new PostFX(this);
+        fx.preload(VignettePass.class);
 
         canvas = createGraphics(width, height, P3D);
 
