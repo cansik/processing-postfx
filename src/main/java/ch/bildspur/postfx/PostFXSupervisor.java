@@ -2,7 +2,9 @@ package ch.bildspur.postfx;
 
 import ch.bildspur.postfx.pass.Pass;
 import processing.core.PApplet;
+import processing.core.PConstants;
 import processing.core.PGraphics;
+import processing.core.PMatrix3D;
 
 import java.nio.file.Path;
 
@@ -25,6 +27,9 @@ public class PostFXSupervisor implements Supervisor {
     // frameBuffer
     private PGraphics[] passBuffers;
 
+    // for HUD restore
+    private final PMatrix3D originalMatrix;
+
     /**
      * Create a new ping-pong pass buffer.
      *
@@ -44,6 +49,12 @@ public class PostFXSupervisor implements Supervisor {
     public PostFXSupervisor(PApplet sketch, int width, int height) {
         this.sketch = sketch;
         setResolution(width, height);
+
+        // set matrix for HUD restore
+        if (sketch.g.is3D())
+            originalMatrix = sketch.getMatrix((PMatrix3D) null);
+        else
+            originalMatrix = new PMatrix3D();
     }
 
     private void increasePass() {
@@ -124,7 +135,13 @@ public class PostFXSupervisor implements Supervisor {
      * Compose and finalize rendering onto sketch texture.
      */
     public void compose() {
+        if (sketch.g.is3D())
+            beginHUD();
+
         sketch.g.image(getCurrentPass(), 0, 0);
+
+        if (sketch.g.is3D())
+            endHUD();
     }
 
     /**
@@ -174,5 +191,19 @@ public class PostFXSupervisor implements Supervisor {
         pass.background(0, 0);
         pass.resetShader();
         pass.endDraw();
+    }
+
+    private void beginHUD() {
+        sketch.g.pushMatrix();
+        sketch.g.hint(PConstants.DISABLE_DEPTH_TEST);
+        // Load the identity matrix.
+        sketch.g.resetMatrix();
+        // Apply the original Processing transformation matrix.
+        sketch.g.applyMatrix(originalMatrix);
+    }
+
+    private void endHUD() {
+        sketch.g.hint(PConstants.ENABLE_DEPTH_TEST);
+        sketch.g.popMatrix();
     }
 }

@@ -32,7 +32,7 @@ public class Sketch extends PApplet {
     PImage lenna;
 
     public void settings() {
-        size(OUTPUT_WIDTH, OUTPUT_HEIGHT, P3D);
+        size(OUTPUT_WIDTH, OUTPUT_HEIGHT, P2D);
         PJOGL.profile = 1;
     }
 
