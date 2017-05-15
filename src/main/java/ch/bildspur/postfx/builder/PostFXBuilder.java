@@ -232,4 +232,21 @@ public class PostFXBuilder {
         supervisor.pass(pass);
         return this;
     }
+
+    /**
+     * Run a vignette pass on the texture.
+     *
+     * @param amount  Amount of the vignette effect.
+     * @param falloff Fall off of the vignette effect.
+     * @return Builder object.
+     */
+    public PostFXBuilder vignette(float amount, float falloff) {
+        VignettePass pass = getPass(VignettePass.class);
+
+        pass.setAmount(amount);
+        pass.setFalloff(falloff);
+
+        supervisor.pass(pass);
+        return this;
+    }
 }
