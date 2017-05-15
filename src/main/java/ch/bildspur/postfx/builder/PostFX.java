@@ -44,4 +44,14 @@ public class PostFX {
         supervisor.render(graphics);
         return builder;
     }
+
+    /**
+     * Start a rendering the screen framebuffer.
+     *
+     * @return PostFXBuilder pattern object.
+     */
+    public PostFXBuilder render() {
+        supervisor.render();
+        return builder;
+    }
 }

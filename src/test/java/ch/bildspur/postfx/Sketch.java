@@ -83,24 +83,21 @@ public class Sketch extends PApplet {
         canvas.popMatrix();
         canvas.endDraw();
 
-        image(canvas, 0, 0);
-
         // add effect
+        /*
         supervisor.render();
         supervisor.pass(sobelPass);
         supervisor.compose();
+        */
 
-        /*
         fx.render(canvas)
                 //.brightnessContrast(0.1f, 1.0f)
                 //.bloom(0.8f, 30, 50)
-                //.pixelate(20)
+                .pixelate(20)
                 .rgbSplit(map(mouseX, 0, width, 0, 100))
                 .vignette(1, 0)
                 .compose(passResult);
-         */
 
-        /*
         blendMode(BLEND);
         image(canvas, 0, 0, width / 2, height / 2);
         text("Canvas", 10, height / 2 + 20);
@@ -108,7 +105,6 @@ public class Sketch extends PApplet {
         blendMode(BLEND);
         image(passResult, width / 2, 0, width / 2, height / 2);
         text("Result", width / 2 + 10, height / 2 + 20);
-        */
 
 
         fill(0, 255, 0);
