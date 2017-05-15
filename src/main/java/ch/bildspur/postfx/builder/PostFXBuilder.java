@@ -281,4 +281,21 @@ public class PostFXBuilder {
         supervisor.pass(pass);
         return this;
     }
+
+    /**
+     * Run a saturation and vibrance correction pass on the texture.
+     *
+     * @param saturation Amount of saturation to add to the picture (default 0.0).
+     * @param vibrance   Vibrance of the colors (default 0.0).
+     * @return Builder object.
+     */
+    public PostFXBuilder saturationVibrance(float saturation, float vibrance) {
+        SaturationVibrancePass pass = getPass(SaturationVibrancePass.class);
+
+        pass.setSaturation(saturation);
+        pass.setVibrance(vibrance);
+
+        supervisor.pass(pass);
+        return this;
+    }
 }

@@ -97,7 +97,7 @@ public class Sketch extends PApplet {
                 //.rgbSplit(map(mouseX, 0, width, 0, 100))
                 .vignette(1, 0)
                 //.noise(1, 50)
-                .denoise(map(mouseY, 0, height, 0, 1))
+                //.saturationVibrance(map(mouseX, 0, width, -1, 1), map(mouseY, 0, height, -1, 1))
                 .compose(passResult);
 
         blendMode(BLEND);
