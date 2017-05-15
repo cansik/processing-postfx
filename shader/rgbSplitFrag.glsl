@@ -9,7 +9,7 @@ varying vec4 vertColor;
 varying vec4 vertTexCoord;
 
 uniform vec2 resolution;
-uniform vec2 delta;
+uniform float delta;
 
 void main() {
 	vec2 dir = vertTexCoord.xy - vec2(.5);

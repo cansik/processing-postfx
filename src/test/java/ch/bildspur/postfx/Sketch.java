@@ -94,7 +94,7 @@ public class Sketch extends PApplet {
                 //.brightnessContrast(0.1f, 1.0f)
                 //.bloom(0.8f, 30, 50)
                 //.pixelate(20)
-                .rgbSplit(map(mouseX, 0, width, 0, 1))
+                .rgbSplit(map(mouseX, 0, width, 0, 100))
                 .compose(passResult);
 
         blendMode(BLEND);
