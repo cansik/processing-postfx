@@ -249,4 +249,21 @@ public class PostFXBuilder {
         supervisor.pass(pass);
         return this;
     }
+
+    /**
+     * Run a noise pass on the texture.
+     *
+     * @param amount Amount of the noise effect.
+     * @param speed  Speed of the noise effect.
+     * @return Builder object.
+     */
+    public PostFXBuilder noise(float amount, float speed) {
+        NoisePass pass = getPass(NoisePass.class);
+
+        pass.setAmount(amount);
+        pass.setSpeed(speed);
+
+        supervisor.pass(pass);
+        return this;
+    }
 }
