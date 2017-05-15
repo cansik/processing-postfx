@@ -26,7 +26,7 @@ public class PostFXBuilder {
         passes = new HashMap<>();
     }
 
-    private <T extends BasePass> T getPass(Class<T> type) {
+    private <T extends Pass> T getPass(Class<T> type) {
         if (passes.containsKey(type.getName()))
             return (T) passes.get(type.getName());
 
@@ -195,6 +195,25 @@ public class PostFXBuilder {
      */
     public PostFXBuilder grayScale() {
         GrayScalePass pass = getPass(GrayScalePass.class);
+        supervisor.pass(pass);
+        return this;
+    }
+
+    /**
+     * Run a bloom effect on the texture.
+     *
+     * @param threshold Luminance threshold.
+     * @param blurSize  Size of the blur.
+     * @param sigma     Sigma of the blur.
+     * @return Builder object.
+     */
+    public PostFXBuilder bloom(float threshold, int blurSize, float sigma) {
+        BloomPass pass = getPass(BloomPass.class);
+
+        pass.setThreshold(threshold);
+        pass.setBlurSize(blurSize);
+        pass.setSigma(sigma);
+
         supervisor.pass(pass);
         return this;
     }

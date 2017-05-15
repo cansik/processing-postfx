@@ -53,7 +53,7 @@ public class Sketch extends PApplet {
         background(0);
 
         canvas.beginDraw();
-        //canvas.background(55);
+        canvas.background(55);
         drawChessBoard(canvas, 8);
 
         // render simple cube
@@ -84,8 +84,8 @@ public class Sketch extends PApplet {
 
         fx.render(canvas)
                 //.brightnessContrast(0.1f, 1.0f)
-                //.pixelate(128)
-                .grayScale()
+                .bloom(0.8f, 30, 50)
+                //.pixelate(20)
                 .compose(passResult);
 
         blendMode(BLEND);
