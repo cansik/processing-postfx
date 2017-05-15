@@ -81,6 +81,16 @@ public class PostFXSupervisor implements Supervisor {
         return resolution;
     }
 
+
+    /**
+     * Start a new multi-pass rendering with the screen framebuffer.
+     */
+    public void render() {
+        sketch.g.endDraw();
+        render(sketch.g);
+        sketch.g.beginDraw();
+    }
+
     /**
      * Start a new multi-pass rendering.
      *
@@ -114,12 +124,7 @@ public class PostFXSupervisor implements Supervisor {
      * Compose and finalize rendering onto sketch texture.
      */
     public void compose() {
-        //todo: not working at the moment
-
-        //clearPass(sketch.g);
-        sketch.g.beginDraw();
         sketch.g.image(getCurrentPass(), 0, 0);
-        sketch.g.endDraw();
     }
 
     /**
