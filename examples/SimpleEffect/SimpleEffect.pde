@@ -4,45 +4,36 @@ import ch.bildspur.postfx.*;
 
 PostFX fx;
 
-PGraphics canvas;
-
 void setup()
 {
-  size(500, 500, P2D);
+  size(500, 500, P3D);
 
   fx = new PostFX(this);  
-  canvas = createGraphics(width, height, P3D);
 }
 
 void draw()
 {
   // draw a simple rotating cube around a sphere
-  canvas.beginDraw();
-  canvas.background(55);
+  background(55);
 
-  canvas.pushMatrix();
+  pushMatrix();
 
-  canvas.translate(width / 2, height / 2);
-  canvas.rotateX(radians(frameCount % 360));
-  canvas.rotateZ(radians(frameCount % 360));
+  translate(width / 2, height / 2);
+  rotateX(radians(frameCount % 360));
+  rotateZ(radians(frameCount % 360));
 
-  canvas.noStroke();
-  canvas.fill(20, 20, 20);
-  canvas.box(100);
+  noStroke();
+  fill(20, 20, 20);
+  box(100);
 
-  canvas.fill(150, 255, 255);
-  canvas.sphere(60);
+  fill(150, 255, 255);
+  sphere(60);
 
-  canvas.popMatrix();
-  canvas.endDraw();
-  
-  blendMode(BLEND);
-  image(canvas, 0, 0);
+  popMatrix();
 
   // add bloom filter
-  blendMode(SCREEN);
-  fx.render(canvas)
-    .brightPass(0.5)
-    .blur(20, 50)
+  fx.render()
+    .bloom(0.5, 20, 50)
+    //.sobel()
     .compose();
 }
