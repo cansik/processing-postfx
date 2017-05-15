@@ -19,14 +19,14 @@ public class PostFXBuilder {
 
     private Map<String, Pass> passes;
 
-    protected PostFXBuilder(PostFX fx, PostFXSupervisor supervisor) {
+    PostFXBuilder(PostFX fx, PostFXSupervisor supervisor) {
         this.fx = fx;
         this.supervisor = supervisor;
 
         passes = new HashMap<>();
     }
 
-    protected <T extends Pass> T getPass(Class<T> type) {
+    <T extends Pass> T getPass(Class<T> type) {
         if (passes.containsKey(type.getName()))
             return (T) passes.get(type.getName());
 
@@ -47,6 +47,10 @@ public class PostFXBuilder {
         passes.put(type.getName(), pass);
 
         return pass;
+    }
+
+    Map<String, Pass> getPasses() {
+        return passes;
     }
 
     /**

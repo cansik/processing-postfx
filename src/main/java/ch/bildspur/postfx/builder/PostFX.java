@@ -94,4 +94,11 @@ public class PostFX {
     public <T extends Pass> T preload(Class<T> type) {
         return builder.getPass(type);
     }
+
+    /**
+     * Clears all cached passes.
+     */
+    public void clearPassCache() {
+        builder.getPasses().clear();
+    }
 }
