@@ -25,15 +25,38 @@ The **PostFX** library currently contains following built in effects:
 * sobel edge detection
 * toon filter
 
+Version 1.1 adds a lot of new shaders:
+
+#### Color
+* Brightness and Contrast Shader
+* Saturation and Vibrance Shader
+* Invert Shader
+* Grayscale Shader
+
+#### Reconstruction
+* Denoise Shader
+
+#### Effects
+* Bloom Shader
+* Pixelate Shader
+* Chromatic aberration shader
+* Noise Shader
+* Vignette Shader
+* RGB Split Shader
+
+And there is also a method to run your own custom shaders.
+
 *Some of the shaders are from the [spite/Wagner](https://github.com/spite/Wagner/) respoitory and only adapted to work in processing.*
 
 ## Example
-There are API's to use the **PostFX** library. The basic one is very easy and removes responsibility of the **pass management**. The advanced way is, where you have to create pass instances yourself, but have the freedom to manage them by your own.
+There are two API's to use the **PostFX** library. The basic one is very easy and removes responsibility of the **pass management**. The advanced way is, where you have to create pass instances yourself, but have the freedom to manage them by your own.
 
-**Custom shaders** are supported, but only in the advanced version at the moment.
+**Custom shaders** are supported, in the basic and the advanced version.
 
 ### Setup
-To use the library you have to install it into your processing library folder. Make sure, the `shader` folder is included.
+To use the library you have to install it over the processing contribution manager.
+
+![Contribution Manager](readme/contributionmanager.png)
 
 Import following packages to use all classes of the **PostFX** library.
 
@@ -43,11 +66,44 @@ import ch.bildspur.postfx.pass.*;
 import ch.bildspur.postfx.*;
 ```
 
-Use the library on every `PGraphics3D` or `PGraphics2D` (except `g`) object.
+Use the library on every `PGraphics3D` or `PGraphics2D` object or even on the screen object (`g`).
 
-### Basic
+### Basic Example
 
-To add a post effect onto a graphics object, you have to create a new graphics object (`canvas`). To use the basic version of the API, instantiate a new `PostFX` object.
+To add a post effect to your processing sketch, you just have to create a new `PostFX` object.
+
+```java
+PostFX fx;
+
+void setup()
+{
+  size(500, 500, P3D);
+  
+  fx = new PostFX(this);  
+}
+```
+Now you have to call the `render()` method of the **PostFX** library. This returns an object, on which you can call all implemented effects.
+
+```java
+void draw()
+{
+  // draw something onto the screen
+  box(100);
+
+  // add bloom filter
+  fx.render()
+    .bloom(0.5, 20, 40)
+    .compose();
+}
+```
+
+Finally you can use `compose()` to draw it onto the main screen (`g` object). It is also possible to compose to onto another `Graphics2D` object.
+
+*Based on [SimpleEffect](examples/SimpleEffect/SimpleEffect.pde) example*
+
+### Off-Screen Buffer
+
+To add a post effect onto a off-screen graphics object, you have to create a new graphics object (`canvas`). To use the basic version of the API, instantiate a new `PostFX` object.
 
 ```java
 PostFX fx;
@@ -84,7 +140,7 @@ void draw()
 
 Finally you can use `compose()` to draw it onto the main screen (`g` object). It is also possible to compose to onto another `Graphics2D` object.
 
-*Based on [SimpleEffect](examples/SimpleEffect/SimpleEffect.pde) example*
+*Based on [OffScreenEffect](examples/OffScreenEffect/OffScreenEffect.pde) example*
 
 ### Advanced
 The advanced version is used as the underlaying layer of the basic API. It does not create the pass objects itself, but gives the freedom to manage them by your own.
@@ -204,6 +260,19 @@ supervisor.compose();
 ```
 
 *Based on [CustomShaderEffect](examples/CustomShaderEffect/) example*
+
+#### Custom Shader Builder Pattern
+With version 1.1 it is now also possible to add a custom shader directly to the builder pattern, which simplifies the whole process:
+
+```java
+// in setup
+NegatePass negatePass = new NegatePass();
+
+// in draw
+fx.render()
+  .custom(negatePass)
+  .compose();
+```
 
 ## About
 *Developed by [Florian Bruggisser](https://github.com/cansik) ([bildspur.ch](https://bildspur.ch)) 2017*
