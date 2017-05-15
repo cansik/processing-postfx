@@ -217,4 +217,19 @@ public class PostFXBuilder {
         supervisor.pass(pass);
         return this;
     }
+
+    /**
+     * Run a RGB split pass on the texture.
+     *
+     * @param delta Delta of the rgb split effect.
+     * @return Builder object.
+     */
+    public PostFXBuilder rgbSplit(float delta) {
+        RGBSplitPass pass = getPass(RGBSplitPass.class);
+
+        pass.setDelta(delta);
+
+        supervisor.pass(pass);
+        return this;
+    }
 }

@@ -6,6 +6,7 @@ import ch.bildspur.postfx.pass.BrightPass;
 import ch.bildspur.postfx.pass.SobelPass;
 import processing.core.PApplet;
 import processing.core.PGraphics;
+import processing.core.PImage;
 import processing.opengl.PJOGL;
 
 /**
@@ -27,6 +28,8 @@ public class Sketch extends PApplet {
 
     PostFX fx;
 
+    PImage lenna;
+
     public void settings() {
         size(OUTPUT_WIDTH, OUTPUT_HEIGHT, P3D);
         PJOGL.profile = 1;
@@ -44,6 +47,9 @@ public class Sketch extends PApplet {
 
         canvas = createGraphics(width, height, P3D);
 
+        // load test image
+        lenna = this.loadImage("data/Lenna.png");
+
         // initialise pass results
         passResult = createGraphics(width, height, P2D);
     }
@@ -54,7 +60,9 @@ public class Sketch extends PApplet {
 
         canvas.beginDraw();
         canvas.background(55);
+
         drawChessBoard(canvas, 8);
+        drawBackgroundImage(canvas);
 
         // render simple cube
         canvas.pushMatrix();
@@ -84,8 +92,9 @@ public class Sketch extends PApplet {
 
         fx.render(canvas)
                 //.brightnessContrast(0.1f, 1.0f)
-                .bloom(0.8f, 30, 50)
+                //.bloom(0.8f, 30, 50)
                 //.pixelate(20)
+                .rgbSplit(map(mouseX, 0, width, 0, 1))
                 .compose(passResult);
 
         blendMode(BLEND);
@@ -99,6 +108,10 @@ public class Sketch extends PApplet {
 
         fill(0, 255, 0);
         text("FPS: " + frameRate, 20, 20);
+    }
+
+    void drawBackgroundImage(PGraphics pg) {
+        pg.image(lenna, 0, 0, pg.width, pg.height);
     }
 
     void drawChessBoard(PGraphics pg, int amount) {
