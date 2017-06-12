@@ -51,10 +51,17 @@ public abstract class BasePass implements Pass {
             int n1 = -1;
 
             // read jar file name
-            String jar = Paths.get(BasePass.class.getProtectionDomain()
+            String fullJarPath = BasePass.class.getProtectionDomain()
                     .getCodeSource()
                     .getLocation()
-                    .getPath()).getFileName().toString();
+                    .getPath();
+
+            if (PApplet.platform == PConstants.WINDOWS) {
+                // remove leading /
+                fullJarPath = fullJarPath.substring(1);
+            }
+
+            String jar = Paths.get(fullJarPath).getFileName().toString();
 
             n1 = path.indexOf(jar);
             if (PApplet.platform == PConstants.WINDOWS) { //platform Windows
