@@ -28,7 +28,7 @@ build_script:
   - gradlew.bat build
   - gradlew.bat jar
   - gradlew.bat javadoc
-  - '%CYG_ROOT%/bin/bash -lc "./release.sh nightly"'
+  - '%CYG_ROOT%/bin/bash -lc "cd \"$OLDPWD\" && ./release.sh nightly"'
 
 test_script:
   - gradlew.bat check
