@@ -10,6 +10,8 @@ fi
 # parameter
 VERSION=$1
 
+echo $PWD
+
 echo clean up...
 rm -r -f build
 
