@@ -1,0 +1,23 @@
+notifications:
+  email: false
+language: java
+jdk:
+  - oraclejdk8
+
+addons:
+  apt:
+    packages:
+      - oracle-java8-installer
+
+# command to build
+install:
+  - gradle assemble
+  - gradle build
+  - gradle jar
+  - gradle javadoc
+
+# command to run tests
+script:
+  - gradle check
+
+after_success:

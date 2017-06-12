@@ -1,4 +1,4 @@
-# PostFX for Processing
+# PostFX for Processing [![Build Status](https://travis-ci.org/cansik/processing-postfx.svg?branch=master)](https://travis-ci.org/cansik/processing-postfx) [![Build status](https://ci.appveyor.com/api/projects/status/i1krci033c3pbkdy?svg=true)](https://ci.appveyor.com/project/cansik/processing-postfx) [![codebeat badge](https://codebeat.co/badges/23fb5893-ccb4-4441-8115-1ee0e65d1e7c)](https://codebeat.co/projects/github-com-cansik-processing-postfx-master)
 A simple post effects library for processing.
 
 ## Introduction
