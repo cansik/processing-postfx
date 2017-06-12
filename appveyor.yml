@@ -7,8 +7,9 @@ environment:
     CYG_CACHE: C:/cygwin/var/cache/setup
     CYG_MIRROR: http://mirrors.kernel.org/sourceware/cygwin/
   matrix:
-    -
-      CYG_ARCH: x86
+    - CYG_ARCH: x86
+    - JAVA_HOME: C:\Program Files\Java\jdk1.8.0
+    - JAVA_HOME: C:\Program Files (x86)\Java\jdk1.8.0
 
 init:
   - 'echo System architecture: %PLATFORM%'
@@ -34,11 +35,6 @@ test_script:
 
 cache:
   - C:\Users\appveyor\.gradle
-
-environment:
-  matrix:
-  - JAVA_HOME: C:\Program Files\Java\jdk1.8.0
-  - JAVA_HOME: C:\Program Files (x86)\Java\jdk1.8.0
 
 matrix:
   fast_finish: true
