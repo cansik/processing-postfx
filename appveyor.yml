@@ -1,5 +1,24 @@
 version: "{branch} {build}"
 
+
+environment:
+  global:
+    CYG_ROOT: C:/cygwin
+    CYG_CACHE: C:/cygwin/var/cache/setup
+    CYG_MIRROR: http://mirrors.kernel.org/sourceware/cygwin/
+  matrix:
+    -
+      CYG_ARCH: x86
+
+init:
+  - 'echo System architecture: %PLATFORM%'
+
+install:
+  - 'appveyor DownloadFile http://cygwin.com/setup-%CYG_ARCH%.exe -FileName setup.exe'
+  - 'setup.exe -qnNdO -R "%CYG_ROOT%" -s "%CYG_MIRROR%" -l "%CYG_CACHE%" -P make -P git -P gcc-core -P ocaml -P ocaml-camlp4 -P ocaml-compiler-libs -P libncurses-devel -P unzip >NUL'
+  - 'setup.exe -qnNdO -R "%CYG_ROOT%" -s "%CYG_MIRROR%" -l "%CYG_CACHE%" -P libmpfr-devel -P patch -P flexdll >NUL'
+  - '%CYG_ROOT%/bin/bash -lc "cygcheck -dc cygwin"'
+
 build:
   verbosity: detailed
 
@@ -8,6 +27,7 @@ build_script:
   - gradlew.bat build
   - gradlew.bat jar
   - gradlew.bat javadoc
+  - '%CYG_ROOT%/bin/bash -lc "./release.sh nightly"'
 
 test_script:
   - gradlew.bat check
