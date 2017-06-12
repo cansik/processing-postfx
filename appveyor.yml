@@ -4,13 +4,13 @@ build:
   verbosity: detailed
 
 build_script:
-  - gradle assemble
-  - gradle build
-  - gradle jar
-  - gradle javadoc
+  - gradlew.bat assemble
+  - gradlew.bat build
+  - gradlew.bat jar
+  - gradlew.bat javadoc
 
 test_script:
-  - gradle check
+  - gradlew.bat check
 
 cache:
   - C:\Users\appveyor\.gradle
