@@ -17,9 +17,17 @@ rm -r -f build
 
 echo compiling...
 
-gradle build
-gradle jar
-gradle javadoc
+if [ "$(expr substr $(uname -s) 1 6)" == "CYGWIN" ];then
+    echo running gradle commands on windows
+    gradlew.bat build
+    gradlew.bat jar
+    gradlew.bat javadoc
+else
+    echo running gradle commands on unix
+    gradle build
+    gradle jar
+    gradle javadoc
+fi
 
 echo "copy files..."
 OUTPUT="release/PostFX"
