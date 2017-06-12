@@ -57,16 +57,15 @@ public abstract class BasePass implements Pass {
                     .getPath();
 
             if (PApplet.platform == PConstants.WINDOWS) {
-                // remove leading /
+                // remove leading slash in windows path
                 fullJarPath = fullJarPath.substring(1);
             }
 
             String jar = Paths.get(fullJarPath).getFileName().toString();
 
             n1 = path.indexOf(jar);
-            if (PApplet.platform == PConstants.WINDOWS) { //platform Windows
-                // In Windows, path string starts with "jar file/C:/..."
-                // so the substring up to the first / is removed.
+            if (PApplet.platform == PConstants.WINDOWS) {
+                // remove leading slash in windows path
                 n0++;
             }
 
