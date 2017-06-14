@@ -144,6 +144,29 @@ Finally you can use `compose()` to draw it onto the main screen (`g` object). It
 
 *Based on [OffScreenEffect](examples/OffScreenEffect/OffScreenEffect.pde) example*
 
+### Pass Preloading
+For performance reasons it is sometimes necessary to preload the pass and compile the shaders before you use it. For this problem, there is the method `preloadPass`.
+
+To preload a pass you have to call the method and pass the `class` type as argument.
+
+```java
+void setup()
+{
+  size(500, 500, P3D);
+
+  fx = new PostFX(this);
+
+  // compile shaders in setup
+  fx.preload(BloomPass.class);
+  fx.preload(RGBSplitPass.class);
+}
+
+```
+
+Everything else works like usual, but you have now compiled your shaders in the `setup()` method and not in the time critical `draw()` method.
+
+*Based on [PassPreloading](examples/PassPreloading/PassPreloading.pde) example*
+
 ### Advanced
 The advanced version is used as the underlaying layer of the basic API. It does not create the pass objects itself, but gives the freedom to manage them by your own.
 
