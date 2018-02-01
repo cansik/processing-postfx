@@ -36,7 +36,7 @@ void draw()
   // apply postfx
   fx.render()
     .bloom(0.2, 20, 40.0)
-    //.noise(0.1, 0.3)
+    .noise(0.05, 0.2)
     .compose();
 
   // draw fps
