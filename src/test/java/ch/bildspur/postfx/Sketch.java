@@ -63,8 +63,8 @@ public class Sketch extends PApplet {
         canvas.beginDraw();
         canvas.background(55);
 
-        drawChessBoard(canvas, 8);
-        drawBackgroundImage(canvas);
+        //drawChessBoard(canvas, 8);
+        //drawBackgroundImage(canvas);
 
         // render simple cube
         canvas.pushMatrix();
@@ -93,13 +93,14 @@ public class Sketch extends PApplet {
         */
 
         fx.render(canvas)
-                //.brightnessContrast(0.1f, 1.0f)
-                //.bloom(0.8f, 30, 50)
+                .brightnessContrast(0.1f, 1.0f)
+                .bloom(0.8f, 30, 50)
                 //.pixelate(20)
                 //.rgbSplit(map(mouseX, 0, width, 0, 100))
                 .vignette(1, 0)
                 //.noise(1, 50)
                 //.saturationVibrance(map(mouseX, 0, width, -1, 1), map(mouseY, 0, height, -1, 1))
+                .binaryGlitch(0.5f)
                 .compose(passResult);
 
         blendMode(BLEND);

@@ -313,4 +313,19 @@ public class PostFXBuilder {
         supervisor.pass(pass);
         return this;
     }
+
+    /**
+     * Run a binary glitch pass on the texture.
+     *
+     * @param strength Size of the binary glitch windows.
+     * @return Builder object.
+     */
+    public PostFXBuilder binaryGlitch(float strength) {
+        BinaryGlitchPass pass = getPass(BinaryGlitchPass.class);
+
+        pass.setStrength(strength);
+
+        supervisor.pass(pass);
+        return this;
+    }
 }
