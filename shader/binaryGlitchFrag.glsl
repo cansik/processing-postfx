@@ -18,17 +18,12 @@ uniform sampler2D texture;
 varying vec4 vertColor;
 varying vec4 vertTexCoord;
 
-uniform vec2 resolution;
 uniform float strength;
-
 
 void main()
 {
-	vec2 uv = vertTexCoord.xy / resolution.xy;
-//    uv.t = 1.0 - uv.t;
-    
-    float x = uv.s;
-    float y = uv.t;
+    float x = vertTexCoord.x;
+    float y = vertTexCoord.y;
    
     // get snapped position
     float psize = 0.04 * strength;
@@ -40,8 +35,6 @@ void main()
 	vec4 colSnap = texture2D(texture, vec2(px,py));
     
 	float lum = pow(1.0 - (colSnap.r + colSnap.g + colSnap.b) / 3.0, strength); // remove the minus one if you want to invert luma
-    
-    
     
     // do move with lum as multiplying factor
     float qsize = psize * lum;
@@ -55,8 +48,7 @@ void main()
     float ry = (py - qy) * lum + y;
     
 	vec4 colMove = texture2D(texture, vec2(rx,ry));
-    
-    
+
     // final color
     gl_FragColor = colMove;
 }

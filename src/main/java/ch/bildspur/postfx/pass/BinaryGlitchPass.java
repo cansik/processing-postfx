@@ -19,7 +19,6 @@ public class BinaryGlitchPass extends BasePass {
 
     @Override
     public void prepare(Supervisor supervisor) {
-        shader.set("resolution", supervisor.getResolution());
         shader.set("strength", strength);
     }
 
