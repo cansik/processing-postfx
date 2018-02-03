@@ -63,7 +63,7 @@ public class Sketch extends PApplet {
         canvas.beginDraw();
         canvas.background(55);
 
-        //drawChessBoard(canvas, 8);
+        drawChessBoard(canvas, 8);
         //drawBackgroundImage(canvas);
 
         // render simple cube
@@ -74,32 +74,20 @@ public class Sketch extends PApplet {
         canvas.rotateZ(radians(frameCount % 360));
 
         canvas.noStroke();
-        //fill(124, 238, 206);
         canvas.fill(20, 20, 20);
         canvas.box(100);
 
         canvas.fill(150, 255, 255);
-        //canvas.fill(255);
         canvas.sphere(60);
 
         canvas.popMatrix();
         canvas.endDraw();
 
         // add effect
-        /*
-        supervisor.render();
-        supervisor.pass(sobelPass);
-        supervisor.compose();
-        */
-
         fx.render(canvas)
                 .brightnessContrast(0.1f, 1.0f)
                 .bloom(0.8f, 30, 50)
-                //.pixelate(20)
-                //.rgbSplit(map(mouseX, 0, width, 0, 100))
                 .vignette(1, 0)
-                //.noise(1, 50)
-                //.saturationVibrance(map(mouseX, 0, width, -1, 1), map(mouseY, 0, height, -1, 1))
                 .binaryGlitch(0.5f)
                 .compose(passResult);
 
