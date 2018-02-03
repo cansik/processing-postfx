@@ -16,8 +16,11 @@ There are a lot of tutorials which help you to implement a bloom filter in OpenG
 So I started to implement a simple but fast library to run post effects on `P2D` and `P3D` graphics objects.
 
 ### What is included?
+Here you find two examples which are based on the [Lenna](examples/DocumentationRendering/data/Lenna.png) and [Lichtenstein](examples/DocumentationRendering/data/Lichtenstein.png) test images:
 
-![Lenna Effect](readme/EffectOverviewShort.gif)
+[![Lenna Effect](examples/DocumentationRendering/renderings/lennaRendering.jpg)](examples/DocumentationRendering/renderings/lennaRendering.png)
+
+[![Lenna Effect](examples/DocumentationRendering/renderings/lichtensteinRendering.jpg)](examples/DocumentationRendering/renderings/lennaRendering.png)
 
 The **PostFX** library currently contains following built in effects:
 
