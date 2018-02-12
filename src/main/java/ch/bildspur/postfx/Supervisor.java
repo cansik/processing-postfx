@@ -2,6 +2,7 @@ package ch.bildspur.postfx;
 
 import ch.bildspur.postfx.pass.Pass;
 import processing.core.PGraphics;
+import processing.core.PImage;
 
 /**
  * Handles the pass buffer and render technique.
@@ -28,7 +29,7 @@ public interface Supervisor {
      *
      * @param graphics Texture used as input.
      */
-    void render(PGraphics graphics);
+    void render(PImage graphics);
 
     /**
      * Apply pass to texture.

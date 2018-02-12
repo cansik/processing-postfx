@@ -4,6 +4,7 @@ import ch.bildspur.postfx.PostFXSupervisor;
 import ch.bildspur.postfx.pass.Pass;
 import processing.core.PApplet;
 import processing.core.PGraphics;
+import processing.core.PImage;
 
 /**
  * Basic PostFX api with builder pattern.
@@ -41,7 +42,7 @@ public class PostFX {
      * @param graphics Texture used to render.
      * @return PostFXBuilder pattern object.
      */
-    public PostFXBuilder render(PGraphics graphics) {
+    public PostFXBuilder render(PImage graphics) {
         supervisor.render(graphics);
         return builder;
     }

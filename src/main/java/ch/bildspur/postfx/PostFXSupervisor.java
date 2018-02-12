@@ -1,10 +1,7 @@
 package ch.bildspur.postfx;
 
 import ch.bildspur.postfx.pass.Pass;
-import processing.core.PApplet;
-import processing.core.PConstants;
-import processing.core.PGraphics;
-import processing.core.PMatrix3D;
+import processing.core.*;
 
 import java.nio.file.Path;
 
@@ -108,7 +105,7 @@ public class PostFXSupervisor implements Supervisor {
      * @param graphics Texture used as input.
      */
     @Override
-    public void render(PGraphics graphics) {
+    public void render(PImage graphics) {
         PGraphics pass = getNextPass();
         clearPass(pass);
 
