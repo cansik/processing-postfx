@@ -21,11 +21,13 @@ javadoc {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
 
-    compile files('lib/processing/core/library/core.jar')
-    compile files('lib/processing/core/library/gluegen-rt-natives-macosx-universal.jar')
-    compile files('lib/processing/core/library/gluegen-rt.jar')
-    compile files('lib/processing/core/library/jogl-all-natives-macosx-universal.jar')
-    compile files('lib/processing/core/library/jogl-all.jar')
+    // processing
+    compile group: 'org.processing', name: 'core', version: '3.3.6'
+    compile group: 'org.jogamp.jogl', name: 'jogl-all-main', version: '2.3.2'
+    compile group: 'org.jogamp.gluegen', name: 'gluegen-rt-main', version: '2.3.2'
+
+    // peasy cam
+    testCompile files('lib/peasycam/peasycam.jar')
 }
 
 task fatJar(type: Jar) {
