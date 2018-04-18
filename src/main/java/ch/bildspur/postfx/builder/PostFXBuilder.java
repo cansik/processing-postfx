@@ -161,6 +161,30 @@ public class PostFXBuilder {
     }
 
     /**
+     * Run an exposure pass on the texture.
+     *
+     * @return Builder object.
+     */
+    public PostFXBuilder exposure(float exposure) {
+        ExposurePass pass = getPass(ExposurePass.class);
+        pass.setExposure(exposure);
+        supervisor.pass(pass);
+        return this;
+    }
+
+    /**
+     * Run an tone mapping pass on the texture.
+     *
+     * @return Builder object.
+     */
+    public PostFXBuilder toneMapping(float gamma) {
+        ToneMappingPass pass = getPass(ToneMappingPass.class);
+        pass.setGamma(gamma);
+        supervisor.pass(pass);
+        return this;
+    }
+
+    /**
      * Run a brightness and contrast correction pass on the texture.
      *
      * @param brightness Amount of brightness to add to the picture (default 0.0).

@@ -30,6 +30,7 @@ public class Sketch extends PApplet {
     PostFX fx;
 
     PImage lenna;
+    PImage hdrImage;
 
     public void settings() {
         size(OUTPUT_WIDTH, OUTPUT_HEIGHT, P2D);
@@ -51,6 +52,7 @@ public class Sketch extends PApplet {
 
         // load test image
         lenna = this.loadImage("data/Lenna.png");
+        hdrImage = this.loadImage("data/hdr.jpg");
 
         // initialise pass results
         passResult = createGraphics(width, height, P2D);
@@ -63,8 +65,8 @@ public class Sketch extends PApplet {
         canvas.beginDraw();
         canvas.background(55);
 
-        drawChessBoard(canvas, 8);
-        //drawBackgroundImage(canvas);
+        //drawChessBoard(canvas, 8);
+        drawHDRImage(canvas);
 
         // render simple cube
         canvas.pushMatrix();
@@ -85,10 +87,12 @@ public class Sketch extends PApplet {
 
         // add effect
         fx.render(canvas)
-                .brightnessContrast(0.1f, 1.0f)
-                .bloom(0.8f, 30, 50)
-                .vignette(1, 0)
-                .binaryGlitch(0.5f)
+                //.brightnessContrast(0.1f, 1.0f)
+                //.bloom(0.8f, 30, 50)
+                //.vignette(1, 0)
+                //.binaryGlitch(0.5f)
+                .toneMapping(1.2f)
+                .exposure(1.0f)
                 .compose(passResult);
 
         blendMode(BLEND);
@@ -105,6 +109,10 @@ public class Sketch extends PApplet {
 
     void drawBackgroundImage(PGraphics pg) {
         pg.image(lenna, 0, 0, pg.width, pg.height);
+    }
+
+    void drawHDRImage(PGraphics pg) {
+        pg.image(hdrImage, 0, 0, pg.width, pg.height);
     }
 
     void drawChessBoard(PGraphics pg, int amount) {
