@@ -73,7 +73,6 @@ public class PostFXSupervisor implements Supervisor {
         passBuffers = new PGraphics[PASS_NUMBER];
         for (int i = 0; i < passBuffers.length; i++) {
             passBuffers[i] = sketch.createGraphics(width, height, PApplet.P2D);
-            passBuffers[i].noSmooth();
         }
 
         resolution = new int[]{width * sketch.pixelDensity, height * sketch.pixelDensity};
@@ -110,9 +109,11 @@ public class PostFXSupervisor implements Supervisor {
         clearPass(pass);
 
         pass.beginDraw();
+        /*
         pass.image(graphics, 0, 0, width, height,
                 0, (int) (height * -1f), width * graphics.pixelDensity, (int) (0.5f * height * graphics.pixelDensity));
-        //pass.image(graphics, 0, 0, width, height);
+        */
+        pass.image(graphics, 0, 0, width, height);
         pass.endDraw();
 
         increasePass();
