@@ -19,6 +19,7 @@ public interface Supervisor {
 
     /**
      * Returns pass buffer resolution.
+     * Represents the actual pixel size calculated with the density.
      *
      * @return Int array as shader uniform.
      */
