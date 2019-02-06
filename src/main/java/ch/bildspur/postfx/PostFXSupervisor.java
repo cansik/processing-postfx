@@ -93,9 +93,7 @@ public class PostFXSupervisor implements Supervisor {
      * Start a new multi-pass rendering with the screen framebuffer.
      */
     public void render() {
-        sketch.g.endDraw();
-        render(sketch.g);
-        sketch.g.beginDraw();
+        render(sketch.g, true);
     }
 
     /**
@@ -103,17 +101,31 @@ public class PostFXSupervisor implements Supervisor {
      *
      * @param graphics Texture used as input.
      */
-    @Override
     public void render(PImage graphics) {
+        render(graphics, false);
+    }
+
+    /**
+     * Start a new multi-pass rendering.
+     *
+     * @param graphics   Texture used as input.
+     * @param toggleDraw Toggles the draw state of the graphics object inside the draw toggle of the pass.
+     */
+    @Override
+    public void render(PImage graphics, boolean toggleDraw) {
         PGraphics pass = getNextPass();
         clearPass(pass);
 
         pass.beginDraw();
-        /*
-        pass.image(graphics, 0, 0, width, height,
-                0, (int) (height * -1f), width * graphics.pixelDensity, (int) (0.5f * height * graphics.pixelDensity));
-        */
+
+        if (toggleDraw)
+            ((PGraphics) graphics).endDraw();
+
         pass.image(graphics, 0, 0, width, height);
+
+        if (toggleDraw)
+            ((PGraphics) graphics).beginDraw();
+
         pass.endDraw();
 
         increasePass();

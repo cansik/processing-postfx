@@ -27,7 +27,7 @@ public class SimpleSketch extends PApplet {
 
     public void settings() {
         size(720, 720, P3D);
-        pixelDensity(1);
+        pixelDensity(2);
     }
 
     public void setup() {
@@ -75,7 +75,9 @@ public class SimpleSketch extends PApplet {
         // clear screen
         graphics.background(0);
 
-        graphics.fill(255);
+
+        graphics.noFill();
+        graphics.stroke(255);
         graphics.ellipse(width / 2, height / 2, width * 0.75f, height * 0.75f);
 
         // render simple cube

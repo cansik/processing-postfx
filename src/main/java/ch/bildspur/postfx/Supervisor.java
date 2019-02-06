@@ -28,9 +28,10 @@ public interface Supervisor {
     /**
      * Start a new multi-pass rendering.
      *
-     * @param graphics Texture used as input.
+     * @param graphics   Texture used as input.
+     * @param toggleDraw Toggles the draw state of the graphics object inside the draw toggle of the pass.
      */
-    void render(PImage graphics);
+    void render(PImage graphics, boolean toggleDraw);
 
     /**
      * Apply pass to texture.
