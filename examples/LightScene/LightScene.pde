@@ -11,6 +11,7 @@ PVector mouse = new PVector(mouseX, mouseY);
 void setup()
 {
   size(800, 600, P2D);
+  pixelDensity(2);
   smooth(8);
 
   fx = new PostFX(this);
