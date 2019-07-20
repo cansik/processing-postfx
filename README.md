@@ -93,6 +93,7 @@ Now you have to call the `render()` method of the **PostFX** library. This retur
 void draw()
 {
   // draw something onto the screen
+  background(22);
   box(100);
 
   // add bloom filter
