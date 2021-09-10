@@ -51,7 +51,7 @@ Version 1.1 adds a lot of new shaders:
 
 And there is also a method to run your own custom shaders.
 
-*Some of the shaders are from the [spite/Wagner](https://github.com/spite/Wagner/) respoitory and only adapted to work in processing.*
+*Some of the shaders are from the [spite/Wagner](https://github.com/spite/Wagner/) repository and only adapted to work in processing.*
 
 ## Example
 There are two API's to use the **PostFX** library. The basic one is very easy and removes responsibility of the **pass management**. The advanced way is, where you have to create pass instances yourself, but have the freedom to manage them by your own.
